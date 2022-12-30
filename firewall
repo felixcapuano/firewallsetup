@@ -58,13 +58,6 @@ iptables -A FORWARD -i eno1 -o tun+ -m state --state RELATED,ESTABLISHED -j ACCE
 iptables -A POSTROUTING -t nat -s 10.8.0.0/24 -o eno1 -j MASQUERADE
 iptables -A OUTPUT -o tun+ -j ACCEPT
 
-# Allow certain ports to be accessible from the outside
-# /sbin/iptables -A INPUT -p tcp --dport 25565 -m state --state NEW -j ACCEPT  #Minecraft
-# /sbin/iptables -A INPUT -p tcp --dport 8123 -m state --state NEW -j ACCEPT   #Dynmap plugin
-
-# UDP packet rule.  This is just a random udp packet rule as an example only
-# /sbin/iptables -A INPUT -p udp --dport 5021 -m state --state NEW -j ACCEPT
-
 # Allow pinging of your server
 /sbin/iptables -A INPUT -p icmp --icmp-type 8 -m state --state NEW,ESTABLISHED,RELATED -j ACCEPT
 
